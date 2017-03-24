@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.2.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd"
+           default-activation="eager" default-availability="mandatory">
+
+    <ext:property-placeholder placeholder-prefix="$[" placeholder-suffix="]"/>
+
+    <cm:property-placeholder persistent-id="simple" update-strategy="reload">
+        <cm:default-properties>
+            <cm:property name="sys.path" value="$[karaf.home]/resources"/>
+            <cm:property name="my.prop" value="DefaultValue"/>
+        </cm:default-properties>
+    </cm:property-placeholder>
+
+
+    <bean id="simple" class="org.maven.example.Simple">
+        <argument value="${sys.path}"/>
+        <argument value="${my.prop}"/>
+    </bean>
+
+    <service interface="org.maven.example.SimpleI" ref="simple"/>
+
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command>
+            <action class="org.maven.example.SimpleCmd">
+                <argument ref="simple" />
+            </action>
+        </command>
+    </command-bundle>
+
+
+</blueprint>

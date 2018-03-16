@@ -17,9 +17,9 @@ public class Simple implements SimpleI {
         this.sysPath = sysPath;
         this.myProp = myProp;
         LOG.info("init {}", toString());
-        if (this.sysPath.contains("resources")) {
-            throw new RuntimeException("bad sys path");
-        }
+//        if (this.sysPath.contains("resources")) {
+//            throw new RuntimeException("bad sys path");
+//        }
     }
 
     @Override

@@ -23,4 +23,11 @@
 
     <service interface="org.maven.example.SimpleI" ref="simple"/>
 
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command>
+            <action class="org.maven.example.SimpleCmd">
+                <argument ref="simple" />
+            </action>
+        </command>
+    </command-bundle>
 </blueprint>

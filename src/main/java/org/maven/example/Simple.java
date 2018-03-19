@@ -36,7 +36,7 @@ public class Simple implements SimpleI {
 
     public void doAction() throws Docx4JException, Xlsx4jException {
         // Open a document from the file system
-        SpreadsheetMLPackage xlsxPkg = SpreadsheetMLPackage.load(getClass().getResourceAsStream("file-7.xlsx"));
+        SpreadsheetMLPackage xlsxPkg = SpreadsheetMLPackage.load(new File("/tmp/file-orig.xlsx"));
 
         WorkbookPart workbookPart = xlsxPkg.getWorkbookPart();
 

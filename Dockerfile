@@ -9,7 +9,10 @@ RUN wget http://www-us.apache.org/dist/karaf/${KARAF_VERSION}/apache-karaf-${KAR
     tar --strip-components=1 -C /opt/karaf -xzf apache-karaf-${KARAF_VERSION}.tar.gz; \
     rm apache-karaf-${KARAF_VERSION}.tar.gz
 
+COPY src/main/resources/file-7.xlsx /tmp/file-orig.xlsx
 COPY target/*.jar /opt/karaf/deploy/.
+COPY target/dependency/docx4j-3.3.6.jar /opt/karaf/deploy/.
+COPY target/dependency/commons-io-2.4.jar /opt/karaf/deploy/.
 
 WORKDIR /opt/karaf
 EXPOSE 1099 8101 44444
